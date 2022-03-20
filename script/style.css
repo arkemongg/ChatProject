@@ -37,3 +37,8 @@
     text-align: center;
     margin: 20px auto;
   }
+
+  ul{
+    max-height: 500px;
+    overflow: scroll;
+  }

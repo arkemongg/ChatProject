@@ -16,12 +16,14 @@ import { initializeApp } from 'firebase/app'
             doc
     } from 'firebase/firestore'
     const firebaseConfig = {
-      apiKey: "AIzaSyBS2gZsoGsDwJyJo2mC1s9j6gfZys_dw8g",
-      authDomain: "fir-chat-app-4c233.firebaseapp.com",
-      projectId: "fir-chat-app-4c233",
-      storageBucket: "fir-chat-app-4c233.appspot.com",
-      messagingSenderId: "559187580793",
-      appId: "1:559187580793:web:90e400ad83018397f781a8"
+        
+        apiKey: "AIzaSyB-BXeGspkyzp0G3J5hYVQ_gkTOSG0srRQ",
+  authDomain: "chatroom-project-js.firebaseapp.com",
+  projectId: "chatroom-project-js",
+  storageBucket: "chatroom-project-js.appspot.com",
+  messagingSenderId: "38943838089",
+  appId: "1:38943838089:web:b465ee8e0e211f6c909b58"
+              
     };
   
     // Initialize Firebase

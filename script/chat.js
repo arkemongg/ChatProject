@@ -70,7 +70,6 @@ export class ChatRoom {
         this.room = room;
         if(this.unsub){
             this.unsub();
-            console.log('room unsub');
         }
     }
 }
