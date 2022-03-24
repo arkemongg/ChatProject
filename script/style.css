@@ -1,44 +1,166 @@
 .container{
-    max-width: 600px;
-  }
-  .btn{
-    background: #43d9be;
-    color: white;
-    outline: none !important;
-    box-shadow: none !important;
-  }
-  .btn:focus{
-    outline: none !important;
-  }
+  max-width: 600px;
+}
+.btn{
+  background: #43d9be;
+  color: white;
+  outline: none !important;
+  box-shadow: none !important;
+}
+.btn:focus{
+  outline: none !important;
+}
 
-  .username {
-    font-weight: bold;
-    margin-right: 5px;
-  }
+.username {
+  font-weight: bold;
+  margin-right: 5px;
+}
 
-  .time{
-    font-size : 0.7em;
-    color: #999;
-  }
+.time{
+  font-size : 0.7em;
+  color: #999;
+}
 
-  .delete {
-    position: absolute;
-    right: 0;
-    font-weight: bold;
-    font-size : 1.7em;
-    color: #999;
-  }
+.delete {
+  position: absolute;
+  right: 0;
+  font-weight: bold;
+  font-size : 1.7em;
+  color: #999;
+}
 
-  .id{
-    display: none;
-  }
+.id{
+  display: none;
+}
 
-  .update-message{
-    text-align: center;
-    margin: 20px auto;
-  }
+.update-message{
+  text-align: center;
+  margin: 20px auto;
+}
 
-  ul{
-    max-height: 500px;
-    overflow: scroll;
-  }
+.chat-window{
+  max-height: 400px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+#general{
+  background: red;
+}
+
+#music{
+  background: blue;
+}
+
+#helloworld{
+  background: #000;
+}
+
+/*blur */
+.blur{
+  filter: blur(4px);
+  transition: 2s;
+  pointer-events: none;
+}
+
+/* login-sign-up */
+
+.main-lsl{
+  height: 38px;
+}
+
+/* login-area */
+.login-form{
+  width: 570px;
+  height: 300px;
+  background: #eee;
+  position:absolute;
+  top: 150;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  display: none;
+}
+.login-form.active{
+  display: block;
+}
+.login-form input{
+  max-width: 185px;
+  margin: 8px;
+}
+.loginUIInputs{
+  position: relative;
+  top: 80px;
+  left: 130px;
+}
+.login-form .input-group-text{
+  width: 100px;
+  margin: 8px;
+  color: black;
+  background: none;
+  border: none;
+}
+
+.loginsubmit,.signupsubmit{
+  width: 185px;
+  position: relative;
+  left: 19%;
+}
+
+.cross{
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 10px;
+  font-weight:900;
+}
+.cross.btn{
+  background: #dc3545;
+}
+
+/* sign-up area */
+
+.signup-form{
+  width: 570px;
+  height: 300px;
+  background: #eee;
+  position:absolute;
+  top: 150;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  display: none;
+}
+.signup-form.active{
+  display: block;
+}
+
+.signup-form input{
+  max-width: 185px;
+  margin: 8px;
+}
+.signup-form .input-group-text{
+  width: 100px;
+  margin: 8px;
+  color: black;
+  background: none;
+  border: none;
+}
+
+
+
+.signupUIInputs{
+  position: relative;
+  top: 50px;
+  left: 120px;
+}
+
+.crosssign-up{
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 10px;
+  font-weight:900;
+  background: #dc3545;
+}
+
+/* logout */
+.logout-message{
+  left: 35%;
+}

@@ -7,17 +7,25 @@ import { initializeApp } from 'firebase/app'
             serverTimestamp,
             onSnapshot,
             onSnapshotsInSync,
-            setDoc
-            ,
+            setDoc,
             where,
             query,
             orderBy,
             deleteDoc,
-            doc
+            doc,
     } from 'firebase/firestore'
+
+    import {    getAuth,
+                createUserWithEmailAndPassword,
+                signOut,signInWithEmailAndPassword,
+                onAuthStateChanged,
+                updateProfile
+} from 'firebase/auth'
+
+
     const firebaseConfig = {
         
-        apiKey: "AIzaSyB-BXeGspkyzp0G3J5hYVQ_gkTOSG0srRQ",
+  apiKey: "AIzaSyB-BXeGspkyzp0G3J5hYVQ_gkTOSG0srRQ",
   authDomain: "chatroom-project-js.firebaseapp.com",
   projectId: "chatroom-project-js",
   storageBucket: "chatroom-project-js.appspot.com",
@@ -29,13 +37,18 @@ import { initializeApp } from 'firebase/app'
     // Initialize Firebase
      initializeApp(firebaseConfig);
 
+    const auth = getAuth();
     const db = getFirestore();
 
     const colRef = collection(db,'chats');
 
-    export {collection,db,
+export {collection,db,
             getDocs,colRef,
             addDoc,serverTimestamp,
             onSnapshot,where,
             query,orderBy,
             deleteDoc,doc,setDoc,onSnapshotsInSync}
+
+export{getAuth,auth,createUserWithEmailAndPassword,signOut,signInWithEmailAndPassword,onAuthStateChanged,
+        updateProfile
+}

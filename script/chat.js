@@ -45,7 +45,6 @@ export class ChatRoom {
                     let id = change.doc.id;
                     data.push({...change.doc.data(),id:id})
                     calback(data[0])
-                    
                 }
             })
             })
@@ -61,7 +60,6 @@ export class ChatRoom {
     //update name form
     updateName(username){
         this.username = username;
-
         localStorage.setItem('username',username);
     }
 
