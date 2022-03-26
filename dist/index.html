@@ -13,139 +13,218 @@
 <body>
 
     <!-- Container & Title -->
-    
-        <div class="container my-4 no-blur">
-            <h1 class="my-4 text-center">Firebase Chat Room</h1>
-            
+
+    <div class="container my-4 no-blur">
+        <h1 class="my-4 text-center">Firebase Chat Room</h1>
+
         <!-- login logout -->
 
         <div class="main-lsl position-relative">
             <!-- //login BTN-->
             <!-- <div class="login btn px-4">Login</div> -->
-            
+
             <!-- Sign Up BTN -->
             <!-- <div class="sign-up btn position-absolute top-0 end-0">Sign Up</div> -->
             <!-- <div class="logout btn position-absolute top-0 end-0">Logout</div> -->
             <!-- Buttons for chatrooms -->
         </div>
-    
-            <div class="chat-rooms mb-3 text-center">
-    
-                <div class="my-2">Choose a chatroom</div>
-    
-                <button class="btn" id="general">#general</button>
-                <button class="btn" id="gaming">#gaming</button>
-                <button class="btn" id="music">#music</button>
-                <button class="btn" id="helloworld">#Hello World</button>
-    
+
+        <div class="chat-rooms mb-3 text-center">
+
+            <div class="my-2">Choose a chatroom</div>
+
+            <button class="btn" id="general">#general</button>
+            <button class="btn" id="gaming">#gaming</button>
+            <button class="btn" id="music">#music</button>
+            <button class="btn" id="helloworld">#Hello World</button>
+
+        </div>
+
+
+
+
+        <!-- chat list - window -->
+
+        <div class="chat-window">
+            <ul class="chat-list list-group"></ul>
+        </div>
+
+        <!-- new chat form -->
+
+        <form class="new-chat my-3">
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        Your Message :
+                    </div>
+                </div>
+                <input type="text" id="message" class="form-control">
+
+                <div class="input-group-append">
+                    <input type="submit" class="btn" value="send">
+                </div>
             </div>
-    
-           
-    
-    
-            <!-- chat list - window -->
-    
-            <div class="chat-window">
-                <ul class="chat-list list-group"></ul>
+
+        </form>
+
+        <!-- update your name -->
+        <form class="new-name my-3">
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        Update Name :
+                    </div>
+                </div>
+                <input type="text" id="name" class="form-control">
+                <div class="input-group-append">
+                    <input type="submit" class="btn" value="update">
+                </div>
             </div>
-    
-            <!-- new chat form -->
-    
-            <form class="new-chat my-3">
-    
+            <div class="update-message"></div>
+        </form>
+    </div>
+    <!-- login area -->
+    <div class="container">
+        <form class="login-form">
+            <div class="loginUIInputs">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            Your Message :
+                            Email :
                         </div>
                     </div>
-                    <input type="text" id="message" class="form-control">
-    
-                    <div class="input-group-append">
-                        <input type="submit" class="btn" value="send">
-                    </div>
+                    <input type="text" id="email" class="form-control">
                 </div>
-    
-            </form>
-    
-            <!-- update your name -->
-            <form class="new-name my-3">
-    
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            Update Name :
+                            Password :
                         </div>
                     </div>
-                    <input type="text" id="name" class="form-control">
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <input class="loginsubmit btn px-4" type="submit">
+            </div>
+            <div class="cross btn btn-danger">X</div>
+        </form>
+    </div>
+
+    <!-- sign up area -->
+
+    <div class="container">
+        <form class="signup-form">
+            <div class="signupUIInputs">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            Name :
+                        </div>
+                    </div>
+                    <input type="text" id="signupname" class="form-control" required>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            Email :
+                        </div>
+                    </div>
+                    <input type="email" id="signupemail" class="form-control" required>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            Password :
+                        </div>
+                    </div>
+                    <input type="password" id="signuppassword" class="form-control" required>
+                </div>
+                <input class="signupsubmit btn px-4" type="submit">
+            </div>
+            <div class="crosssign-up btn btn-danger">X</div>
+        </form>
+    </div>
+
+    <!--    User profile Area -->
+
+    <div class="container">
+        <div class="profile-area ">
+            <div class="profile-ui-details">
+
+                <!-- DP -->
+                <div class="profile-dp"></div>
+                
+                <!-- Name -->
+                <div class="profile-name pe-none">annonymous</div>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text btn pe-none m-2">
+                            Email :
+                        </div>
+                    </div>
                     <div class="input-group-append">
-                        <input type="submit" class="btn" value="update">
+                        <div class="input-group-text bg-primary text-white m-2 account-email">
+                            <!-- account email from DOM -->
+                        </div>
                     </div>
                 </div>
-                <div class="update-message"></div>
-            </form>
-        </div> 
-            <!-- login area -->
-            <div class="container">
-                <form class="login-form">
-                    <div class="loginUIInputs">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    Email :
-                                </div>
-                            </div>
-                            <input type="text" id="email" class="form-control">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text btn pe-none m-2">
+                            Acount Creation Time:
                         </div>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    Password :
-                                </div>
-                            </div>
-                            <input type="text" id="password" class="form-control">
-                        </div>
-                        <input class="loginsubmit btn px-4"  type="submit">
                     </div>
-                    <div class="cross btn btn-danger">X</div>
-                </form>
-            </div>
-
-            <!-- sign up area -->
-
-            <div class="container">
-                <form class="signup-form">
-                    <div class="signupUIInputs">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    Name :
-                                </div>
-                            </div>
-                            <input type="text" id="signupname" class="form-control" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text bg-primary text-white m-2 creation-time">
+                            <!-- creation time from DOM -->
                         </div>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    Email :
-                                </div>
-                            </div>
-                            <input type="email" id="signupemail" class="form-control" required>
-                        </div>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    Password :
-                                </div>
-                            </div>
-                            <input type="password" id="signuppassword" class="form-control" required>
-                        </div>
-                        <input class="signupsubmit btn px-4" type="submit">
                     </div>
-                    <div class="crosssign-up btn btn-danger">X</div>
-                </form>
-            </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text btn pe-none m-2">
+                            Acount Created:
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <div class="input-group-text bg-primary text-white m-2 account-age">
+                            140 Days ago
+                        </div>
+                    </div>
+                </div>
 
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text btn pe-none m-2">
+                            Last Login Time:
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <div class="input-group-text bg-primary text-white m-2 last-login">
+                            Fri, 25 Mar 2022 09:48:08 GMT
+                        </div>
+                    </div>
+                </div>
+
+                <form class="dp-update-area mx-2">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text btn pe-none flex-item">
+                                Update Profile Picture
+                            </div>
+                        </div>
+                        <input type="text" id="url" class="form-control profile-url flex-item" placeholder="place your image URL">
+                        <div class="input-group-append">
+                            <input type="submit" class="btn flex-item">
+                        </div>
+                    </div>
+                </form>
+                <div class="crossprofilebtn btn btn-danger">X</div>
+            </div>
+        </div>
+    </div>
     <script src="bundle.js"></script>
 </body>
 

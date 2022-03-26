@@ -52,11 +52,11 @@ updateNameForm.addEventListener('submit', e => {
     e.preventDefault();
     let username = updateNameForm.name.value;
     const name = document.querySelector('.name')
-            console.log(name);
-            if(name){
-                console.log(name);
-                name.innerText = username;
-            }
+    console.log(name);
+    if (name) {
+        console.log(name);
+        name.innerText = username;
+    }
     authentication.profile(username);
     chatroom.updateName(username);
     updateNameForm.reset();
@@ -91,11 +91,7 @@ chatroomDOM.addEventListener('click', e => {
 
 //AUTH USERNAME/EMAIL
 
-authentication.signUp(data => {
-    console.log(data);
-    chatroom.updateName(data.displayName);
-    console.log(data.displayName);
-})
+
 
 
 // console.log(authentication.logOut().auth.currentUser);
@@ -106,23 +102,36 @@ chatUI.mainBTNarea.addEventListener('click', e => {
     if (e.target.className.includes('logout')) {
         const signOut = authentication.logOut().e;
         const signOutData = authentication.logOut().auth
-        chatUI.logOutUI(signOut,signOutData)
+        chatUI.logOutUI(signOut, signOutData);
     } else if (e.target.className.includes('login')) {
         chatUI.loginUI((email, password, loginForm, xBTN) => {
             authentication.login(email, password).then(() => {
                 loginForm.reset();
                 xBTN.click();
+                chatroom.updateName(authentication.username);
             });
         });
     }
-
     else if (e.target.className.includes('sign-up')) {
         chatUI.signupUI((signupEmail, signuppassword, name, signupForm, xBTN) => {
-            authentication.signUp(signupEmail, signuppassword, name, signupForm, xBTN)
+            authentication.signUp(signupEmail, signuppassword)
+                .then(cred => {
+                    signupForm.reset();
+                    xBTN.click();
+                    authentication.profile(name);
+                }).catch(error => {
+                    console.log(error);
+                })
+            chatroom.updateName(name);
         });
     }
-
-
+    else if (e.target.className.includes('name')){
+        authentication.profileDetails(data=>{
+            chatUI.profileUI(data,url=>{
+                authentication.updateProfileDP(url);
+            });
+        })
+    }
 
 })
 

@@ -11,72 +11,75 @@ import {
 class Authentication {
     constructor() {
 
-        this.unsub;
+        this.username;
 
     }
 
-    async signUp(signupEmail, signuppassword, name, signupForm, xBTN) {
-        const email = signupEmail;
-        const password = signuppassword;
-        await createUserWithEmailAndPassword(auth,email,password)
-            .then(cred => {
-                signupForm.reset();
-                xBTN.click();
-                updateProfile(cred.user, {
-                    displayName: name,
-                }).then(() => {
-                }).catch(error => {
-                    console.log(error.code,error.message);
-                })
-            }).catch(error => {
-                console.log(error.code,error.message);
-            })
+   async signUp(signupEmail, signuppassword) {
+       await createUserWithEmailAndPassword(auth,signupEmail,signuppassword)
     }
 
 
     ///login area
     async login(email, password) {
-
-        await signInWithEmailAndPassword(auth, email, password);
-
+        await signInWithEmailAndPassword(auth, email,password);
         
     }
 
     //user logged in
 
     loggedIn(callback) {
-      this.unsub = onAuthStateChanged(auth, (user) => {
+      onAuthStateChanged(auth, (user) => {
             if (user) {
                 callback(user);
-                console.log(auth);
+                this.username = auth.currentUser.displayName;
+                console.log(auth,this.username);
             } else {
                 callback();
+                this.username;
             }
         });
     }
 
     //LOGOUT
     logOut() {
-        
         const e = signOut(auth);
-        return {e,auth};
-
+        return {e,auth}; 
     }
 
     profile(name){
             onAuthStateChanged(auth,user=>{
-
+                
                 console.log(user);
                 updateProfile(user, {
                     displayName: name
                   }).then(() => {
-                      
+
                   }).catch((error) => {
                     // An error occurred
                     // ...
                   });
             })
-        
+    }
+
+    profileDetails(callback){
+        onAuthStateChanged(auth,user=>{
+            console.log(user);
+            callback(user)
+        })
+    }
+
+    updateProfileDP(url){
+        onAuthStateChanged(auth,user=>{
+                
+            updateProfile(user, {
+                photoURL: url
+              }).then(() => {
+
+              }).catch((error) => {
+                console.log(error.message);
+              });
+        })
     }
 }
 

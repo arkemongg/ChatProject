@@ -1,4 +1,4 @@
-import { formatDistanceToNow, formatDistance, toDate } from 'date-fns'
+import { formatDistanceToNow, formatDistance, toDate, subDays } from 'date-fns'
 import { signOut } from 'firebase/auth';
 
 export class ChatUI {
@@ -8,18 +8,18 @@ export class ChatUI {
 
         // logout BTN
         this.logout = document.createElement('div');
-        this.logout.classList.add('logout', 'btn','position-absolute','end-0');
+        this.logout.classList.add('logout', 'btn', 'position-absolute', 'end-0');
         this.logout.innerText = 'Logout';
         // LOGIN
-        
+
         this.loginBTN = document.createElement('div');
-        this.loginBTN.classList.add('login', 'btn','px-4');
+        this.loginBTN.classList.add('login', 'btn', 'px-4');
         this.loginBTN.innerText = 'Login';
-        
+
         //SIGN-UP
 
         this.signUpBTN = document.createElement('div');
-        this.signUpBTN.classList.add('sign-up', 'btn','px-4','position-absolute','end-0');
+        this.signUpBTN.classList.add('sign-up', 'btn', 'px-4', 'position-absolute', 'end-0');
         this.signUpBTN.innerText = 'Sign Up';
 
         // this.signUpBTN = document.querySelector('.sign-up');
@@ -113,15 +113,15 @@ export class ChatUI {
         // const loginDIV = document.querySelector('.login');
         const container = document.querySelectorAll('.no-blur');
         const loginForm = document.querySelector('.login-form');
-            // loginDIV.onclick = (e) => {
-            container.forEach(c => {
-                c.classList.toggle('blur');
-                loginForm.classList.toggle('active');
-            })
+        // loginDIV.onclick = (e) => {
+        container.forEach(c => {
+            c.classList.toggle('blur');
+            loginForm.classList.toggle('active');
+        })
         // }
         //another html tamplate called .login-form
 
-       
+
         const xBTN = document.querySelector('.cross');
 
         xBTN.onclick = () => {
@@ -146,14 +146,14 @@ export class ChatUI {
         const signupForm = document.querySelector('.signup-form');
         const xBTN = document.querySelector('.crosssign-up');
         // signupDIV.onclick = () => {
-            container.forEach(c => {
-                c.classList.toggle('blur');
-                signupForm.classList.toggle('active');
-            })
+        container.forEach(c => {
+            c.classList.toggle('blur');
+            signupForm.classList.toggle('active');
+        })
         // }
         //another html tamplate called .login-form
 
-        
+
 
         xBTN.onclick = () => {
             signupForm.classList.toggle('active');
@@ -167,7 +167,7 @@ export class ChatUI {
             const signupEmail = signupForm.signupemail.value.trim();
             const signuppassword = signupForm.signuppassword.value.trim();
             const name = signupForm.signupname.value;
-            localStorage.setItem('username',name);
+            localStorage.setItem('username', name);
             this.name = name;
             callback(signupEmail, signuppassword, name, signupForm, xBTN)
         })
@@ -177,28 +177,26 @@ export class ChatUI {
     //logged in ui 
 
     loggedInUI(user) {
-        if(user){
+        if (user) {
 
-            const signUp= document.querySelector('.sign-up');
-            const login= document.querySelector('.login')
-            if(signUp && login){
+            const signUp = document.querySelector('.sign-up');
+            const login = document.querySelector('.login')
+            if (signUp && login) {
                 this.mainBTNarea.removeChild(signUp);
                 this.mainBTNarea.removeChild(login);
             }
-            
+
             this.name = document.createElement('div');
             this.name.classList.add('name', 'btn');
             // user.displayName ? this.displayName = user.displayName : this.displayName = this.name;
 
-            let username = localStorage.getItem('username') ? localStorage.getItem('username'):user.displayName
+            let username = localStorage.getItem('username') ? localStorage.getItem('username') : user.displayName
 
             this.name.innerText = `${username}`;
             this.mainBTNarea.appendChild(this.name);
             this.mainBTNarea.append(this.logout);
-
-            
         }
-        else{
+        else {
             this.mainBTNarea.append(this.loginBTN);
             this.mainBTNarea.append(this.signUpBTN);
 
@@ -214,21 +212,100 @@ export class ChatUI {
     }
 
     //logged out 
-    logOutUI(signout,signOutData){
+    logOutUI(signout, signOutData) {
         this.mainBTNarea.innerHTML = `<div class = 'logout-message btn position-absolute'>${signOutData.currentUser.displayName}  signed out</div>`;
-        
+        localStorage.removeItem('username');
         signout.then(() => {
-            const signUp= document.querySelector('.sign-up');
-            const login= document.querySelector('.login')
-            if(signUp && login){
+            const signUp = document.querySelector('.sign-up');
+            const login = document.querySelector('.login')
+            if (signUp && login) {
                 this.mainBTNarea.removeChild(signUp);
                 this.mainBTNarea.removeChild(login);
             }
-            localStorage.clear();
             setTimeout(() => {
                 this.mainBTNarea.innerHTML = ``;
                 this.mainBTNarea.append(this.loginBTN);
                 this.mainBTNarea.append(this.signUpBTN);
+            }, 1000);
+        })
+    }
+
+    profileUI(data, callback) {
+        const container = document.querySelectorAll('.no-blur');
+        const profileArea = document.querySelector('.profile-area ');
+        const xBTN = document.querySelector('.crossprofilebtn');
+        container.forEach(c => {
+            c.classList.toggle('blur');
+            profileArea.classList.toggle('active');
+        })
+        xBTN.onclick = () => {
+            profileArea.classList.toggle('active');
+            container.forEach(c => {
+                c.classList.toggle('blur');
+            })
+        }
+
+        // profile details classes
+
+        const profileDP = document.querySelector('.profile-dp');
+        //profileDP.style.background = `url(${data.photoURL})`;
+        if (data.photoURL) {
+            profileDP.setAttribute('style', `background:url(${data.photoURL});background-position:center;
+            background-repeat: no-repeat;
+            background-size: 100%;`)
+        } else {
+            profileDP.setAttribute('style', `background:url(https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png);background-position:center;
+            background-repeat: no-repeat;
+            background-size: 100%;`)
+        }
+
+
+        const name = document.querySelector('.profile-name');
+
+        name.innerHTML = data.displayName;
+
+        const email = document.querySelector('.account-email');
+
+        email.innerText = data.email;
+
+        const creationTime = document.querySelector('.creation-time');
+
+        creationTime.innerHTML = data.metadata.creationTime
+
+        const accountAge = document.querySelector('.account-age');
+
+        // datefns date
+
+        // const when = formatDistance(data.metadata.createdAt.toDate(), new Date(),
+        // { addSuffix: true },)
+
+        const creationTimeData = new Number(data.metadata.createdAt)
+        console.log();
+        const when = (time) => {
+            const when = formatDistance(
+                new Date(time),
+                new Date(),
+                { addSuffix: true }
+            )
+            return when;
+        }
+        accountAge.innerHTML = when(creationTimeData);
+
+        const lastLogin = document.querySelector('.last-login');
+
+        const lastLoginTime = new Number(data.metadata.lastLoginAt);
+        lastLogin.innerHTML = when(lastLoginTime);
+
+        const dpUpdateArea = document.querySelector('.dp-update-area');
+
+        dpUpdateArea.addEventListener('submit', e => {
+            e.preventDefault();
+            callback(dpUpdateArea.url.value);
+            dpUpdateArea.reset();
+            setTimeout(() => {
+                profileDP.setAttribute('style', `background:url(${data.photoURL});background-position:center;
+                background-repeat: no-repeat;
+                background-size: 100%;`)
             }, 1000);
         })
     }

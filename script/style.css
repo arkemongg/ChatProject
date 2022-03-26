@@ -1,3 +1,20 @@
+@media screen and (max-width: 393px) {
+
+  .signup-form {
+    min-width: 250px;
+    background: #000;
+  }
+  body {
+    background-color: green;
+  }
+  .login-form {
+    width: 250px;
+    background: #000;
+  }
+  
+}
+
+
 .container{
   max-width: 600px;
 }
@@ -90,6 +107,7 @@
   position: relative;
   top: 80px;
   left: 130px;
+  
 }
 .login-form .input-group-text{
   width: 100px;
@@ -119,6 +137,7 @@
 /* sign-up area */
 
 .signup-form{
+  max-width: 570px;
   width: 570px;
   height: 300px;
   background: #eee;
@@ -163,4 +182,61 @@
 /* logout */
 .logout-message{
   left: 35%;
+}
+
+
+
+/* profile area */
+
+.profile-area{
+  width: 570px;
+  height: 570px;
+  background: #eee;
+  position: absolute;
+  top: 150;
+  display: none;
+}
+.profile-area.active{
+  display: block;
+}
+.profile-ui-details{
+  padding-top:15px;
+}
+.profile-name{
+  background: #43d9be;
+  color: white;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 150px;
+  max-height: 50px;
+  margin: auto;
+  margin-top: 10px;
+  text-align: center;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 20px;
+}
+.profile-dp{
+  width: 120px;
+  height: 120px;
+  background-color: aquamarine;
+  border-radius: 50%;
+  margin: auto;
+  
+}
+
+.dp-update-area{
+  display: flex;
+  flex-wrap:wrap-reverse;
+  max-height: 150px;
+}
+
+.crossprofilebtn{
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 10px;
+  font-weight:900;
+  background: #dc3545;
+
 }
